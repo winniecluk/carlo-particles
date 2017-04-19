@@ -28,6 +28,7 @@
 window.onload = function(){
 
   var canvas = new fabric.Canvas('canvas');
+  canvas.setDimensions({width: 1000, height: 1000})
   var bubblesArr = [];
 
   function Bubble(radiusNum, colorStr, leftNum, topNum){
@@ -83,17 +84,18 @@ window.onload = function(){
       function(circleArr){
         circleArr.forEach(function(el){
           canvas.add(el);
+          var duration = 1000 * randomNumber(1, 5);
           el.animate('left',
-            randomNumber(20, 100),
+            randomNumber(100, 400),
             {
               onChange: canvas.renderAll.bind(canvas),
-              duration: 1000 * randomNumber(1, 5)
+              duration: duration
             });
           el.animate('top',
-            randomNumber(20, 100),
+            randomNumber(100, 400),
             {
               onChange: canvas.renderAll.bind(canvas),
-              duration: 1000 * randomNumber(1, 5)
+              duration: duration
             });
         }); // finishes circleArr forEach
         console.log(circleArr);
@@ -101,6 +103,6 @@ window.onload = function(){
     ) // closes then
   }
 
-  createCircles(3, bubblesArr, Bubble);
+  createCircles(30, bubblesArr, Bubble);
 
 }
